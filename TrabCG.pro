@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     objeto.cpp \
     camera.cpp \
     calc.cpp \
-    pixel.cpp
+    pixel.cpp \
+    luz.cpp
 
 HEADERS  += mainwindow.h \
     face.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     objeto.h \
     camera.h \
     calc.h \
-    pixel.h
+    pixel.h \
+    luz.h
 
 FORMS    += mainwindow.ui
