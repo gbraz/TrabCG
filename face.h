@@ -2,17 +2,23 @@
 #define FACE_H
 
 #include "vertice.h"
-
+#include "vetor.h"
+#include "calc.h"
 
 class Face
 {
-public:
-
     Vertice vertice1;
     Vertice vertice2;
     Vertice vertice3;
     std::vector<float> normal;
-    Face();
+public:
+
+    Face(Vertice vertice1, Vertice vertice2, Vertice vertice3);
+    Face(Vertice vertice1, Vertice vertice2, Vertice vertice3, vector<float> normal);
+    Vertice getVertice1();
+    Vertice getVertice2();
+    Vertice getVertice3();
+    vector<float> getNormal();
 };
 
 #endif // FACE_H

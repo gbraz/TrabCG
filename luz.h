@@ -1,6 +1,9 @@
 #ifndef LUZ_H
 #define LUZ_H
 
+#include <vector>
+
+using namespace std;
 
 class Luz
 {
