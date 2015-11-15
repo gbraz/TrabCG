@@ -4,10 +4,10 @@ using namespace std;
 
 Vertice::Vertice()
 {
-    vetor.push_back(0);
-    vetor.push_back(0);
-    vetor.push_back(0);
-    vetor.push_back(0);
+    posicao.push_back(0);
+    posicao.push_back(0);
+    posicao.push_back(0);
+    posicao.push_back(0);
 }
 
 Vertice::Vertice(float x, float y, float z)
@@ -15,20 +15,37 @@ Vertice::Vertice(float x, float y, float z)
     setPos(x, y, z);
 }
 
+
+float Vertice::getX(){
+    return x;
+}
+
+float Vertice::getY(){
+    return y;
+}
+
+float Vertice::getZ(){
+    return z;
+}
+
+vector<float> Vertice::getPos(){
+    return posicao;
+}
+
 void Vertice::setPos(float x, float y, float z)
 {
-    vector<float> vetor;
+    vector<float> pos;
 
     this->x = x;
     this->y = y;
     this->z = z;
 
-    vetor.push_back(x);
-    vetor.push_back(y);
-    vetor.push_back(z);
-    vetor.push_back(0);
+    pos.push_back(x);
+    pos.push_back(y);
+    pos.push_back(z);
+    pos.push_back(0);
 
-    this->vetor = vetor;
+    posicao = pos;
 }
 
 void Vertice::setPos(vector<float> vetor)
@@ -37,5 +54,5 @@ void Vertice::setPos(vector<float> vetor)
     this->y = vetor[1];
     this->z = vetor[2];
 
-    this->vetor = vetor;
+    posicao = vetor;
 }

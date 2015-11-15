@@ -7,16 +7,21 @@ using namespace std;
 
 class Vertice
 {
-public:
     float x;
     float y;
     float z;
-    vector <float> vetor;
+    vector <float> posicao;
+public:
 
     Vertice();
     Vertice(float x, float y, float z);
+
+    float getX();
+    float getY();
+    float getZ();
+    vector<float> getPos();
     void setPos(float x, float y, float z);
-    void setPos(vector<float> vetor);
+    void setPos(vector<float> posicao);
 };
 
 #endif // VERTICE_H
