@@ -6,10 +6,10 @@
 Camera::Camera(Vertice posicao, Vertice lookAt)
 {
     vector<float> vUp;
-    Vertice viewUp(lookAt.x, lookAt.y + 1, lookAt.z);
+    Vertice viewUp(lookAt.getX(), lookAt.getY() + 1, lookAt.getZ());
     Calc m;
 
-    this->posicao = posicao;
+    this->posicao = posicao.getPos();
     this->lookAt = lookAt;
 
     vUp = m.verticesParaVetor(viewUp, posicao);
@@ -24,8 +24,20 @@ Camera::Camera(Vertice posicao, Vertice lookAt)
 
 }
 
-Vertice Camera::getPos(){
-    return this->posicao;
+vector<float> Camera::getPos(){
+    return posicao;
+}
+
+float Camera::getX(){
+    return x;
+}
+
+float Camera::getY(){
+    return y;
+}
+
+float Camera::getZ(){
+    return z;
 }
 
 vector<float> Camera::getI(){
