@@ -10,9 +10,10 @@ Calc::Calc()
 vector<float> Calc::verticesParaVetor(Vertice a, Vertice b){
     vector<float> u;
 
-    u.push_back(a.x - b.x);
-    u.push_back(a.y - b.y);
-    u.push_back(a.z - b.z);
+    u.push_back(a.getX() - b.getX());
+    u.push_back(a.getY() - b.getY());
+    u.push_back(a.getZ() - b.getZ());
+    u.push_back(0);
 
     return u;
 }
@@ -23,6 +24,7 @@ vector<float> Calc::produtoVetorial(vector<float> u, vector<float> v){
     w.push_back(u[1]*v[2] - u[2]*v[1]);
     w.push_back(u[2]*v[0] - u[0]*v[2]);
     w.push_back(u[0]*v[1] - u[1]*v[0]);
+    w.push_back(0);
 
     return w;
 }
@@ -55,19 +57,19 @@ vector<float> Calc::coordMundoParaCam(Camera camera, Vertice vertice){
             mat[i][0] = camera.getI()[0];
             mat[i][1] = camera.getI()[1];
             mat[i][2] = camera.getI()[2];
-            mat[i][3] = (-1)*produtoEscalar(camera.getI(), vertice.vetor);
+            mat[i][3] = (-1)*produtoEscalar(camera.getI(), camera.getPos());
             break;
         case(1):
             mat[i][0] = camera.getJ()[0];
             mat[i][1] = camera.getJ()[1];
             mat[i][2] = camera.getJ()[2];
-            mat[i][3] = (-1)*produtoEscalar(camera.getJ(), vertice.vetor);
+            mat[i][3] = (-1)*produtoEscalar(camera.getJ(), camera.getPos());
             break;
         case(2):
             mat[i][0] = camera.getK()[0];
             mat[i][1] = camera.getK()[1];
             mat[i][2] = camera.getK()[2];
-            mat[i][3] = (-1)*produtoEscalar(camera.getK(), vertice.vetor);
+            mat[i][3] = (-1)*produtoEscalar(camera.getK(), camera.getPos());
             break;
         default:
             mat[i][0] = 0;
@@ -78,7 +80,7 @@ vector<float> Calc::coordMundoParaCam(Camera camera, Vertice vertice){
         }
     }
 
-    return produtoMatrizVetor(mat, vertice.vetor);
+    return produtoMatrizVetor(mat, vertice.getPos());
 }
 
 vector<float> Calc::coordCamParaMundo(Camera camera, Vertice vertice){
@@ -94,16 +96,16 @@ vector<float> Calc::coordCamParaMundo(Camera camera, Vertice vertice){
         mat[i][2] = camera.getK()[i];
 
         if(i == 0)
-            mat[i][3] = camera.getPos().x;
+            mat[i][3] = camera.getX();
         else if(i == 1)
-            mat[i][3] = camera.getPos().y;
+            mat[i][3] = camera.getY();
         else if(i ==2)
-            mat[i][3] = camera.getPos().z;
+            mat[i][3] = camera.getZ();
         else
             mat[i][0] = 1;
      }
 
-    return produtoMatrizVetor(mat, vertice.vetor);
+    return produtoMatrizVetor(mat, vertice.getPos());
 }
 
 float Calc::produtoEscalar(vector<float> u, vector<float> v) {
