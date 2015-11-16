@@ -139,4 +139,24 @@ vector<float> Calc::pontoIntersecao(vector<float> raioProjecao, Face face){
     return raioProjecao;
 }
 
+bool Calc::interceptaFace(vector<float> pontoInter, Face face){
+    vector<float> aresta1, aresta2, aresta3;
+    vector<float> normal1, normal2, normal3;
+
+    aresta1 =  face.getVertice1().getPos();
+    aresta2 =  face.getVertice2().getPos();
+    aresta3 =  face.getVertice3().getPos();
+
+    normal1 = produtoVetorial(aresta2, aresta1);
+    normal2 = produtoVetorial(aresta3, aresta2);
+    normal3 = produtoVetorial(aresta1, aresta3);
+
+    if((produtoEscalar(pontoInter, normal1) < 0) ||
+            (produtoEscalar(pontoInter, normal2) < 0) ||
+            (produtoEscalar(pontoInter, normal3) < 0))
+        return false;
+
+    return true;
+}
+
 //Matr

@@ -13,14 +13,16 @@ class Calc
 {
 public:
     Calc();
-    vector<float> verticesParaVetor(Vertice a, Vertice b);
-    vector<float> produtoVetorial(vector<float> u, vector<float> v);
+    vector<float> verticesParaVetor(Vertice, Vertice);
+    vector<float> produtoVetorial(vector<float>, vector<float>);
     void transVetUnitario(vector<float>& u);
-    vector<float> coordMundoParaCam(Camera camera, Vertice vertice);
-    vector<float> coordCamParaMundo(Camera camera, Vertice vertice);
+    vector<float> coordMundoParaCam(Camera, Vertice);
+    vector<float> coordCamParaMundo(Camera, Vertice);
     float produtoEscalar(vector<float>, vector<float>);
     vector<float> produtoMatrizVetor(vector<vector<float> >, vector<float>);
     vector<float> pontoIntersecao(vector<float>, Face);
+    bool interceptaFace(vector<float>, Face);
+
 };
 
 #endif // MATRIZ_H
