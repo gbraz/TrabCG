@@ -1,4 +1,5 @@
 #include "face.h"
+#include "calc.h"
 
 
 Face::Face(Vertice vertice1, Vertice vertice2, Vertice vertice3)

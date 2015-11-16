@@ -3,7 +3,7 @@
 
 #include "vertice.h"
 #include "vetor.h"
-#include "calc.h"
+
 
 class Face
 {

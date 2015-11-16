@@ -1,6 +1,5 @@
 #include "calc.h"
-#include "camera.h"
-#include <math.h>
+
 
 Calc::Calc()
 {
@@ -127,5 +126,17 @@ vector<float> Calc::produtoMatrizVetor(vector<vector<float> > matriz, vector<flo
     return resultado;
 }
 
+vector<float> Calc::pontoIntersecao(vector<float> raioProjecao, Face face){
+    float t;
+    vector<float> normal = face.getNormal();
+
+    t = produtoEscalar(normal, face.getVertice1().getPos());
+    t = t/produtoEscalar(normal, raioProjecao);
+
+    for(int i = 0; i < 4; i++)
+        raioProjecao[i] = raioProjecao[i]*t;
+
+    return raioProjecao;
+}
 
 //Matr
