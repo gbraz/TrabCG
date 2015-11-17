@@ -20,6 +20,22 @@ Luz::Luz()
     rgb.push_back(b);
 }
 
+Luz::Luz(float x, float y, float z){
+
+    posicao.push_back(x);
+    posicao.push_back(y);
+    posicao.push_back(z);
+    posicao.push_back(0);
+
+    r = 1;
+    g = 1;
+    b = 1;
+
+    rgb.push_back(r);
+    rgb.push_back(g);
+    rgb.push_back(b);
+}
+
 float Luz::getX(){
     return x;
 }

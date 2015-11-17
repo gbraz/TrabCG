@@ -13,6 +13,7 @@ class Luz
     vector<float> rgb;
 public:
     Luz();
+    Luz(float, float, float);
     float getX();
     float getY();
     float getZ();
