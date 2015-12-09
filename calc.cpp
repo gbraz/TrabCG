@@ -6,6 +6,13 @@ Calc::Calc()
 
 }
 
+vector<float> Calc::subtracaoVetores(vector<float> u, vector<float> v){
+    for(int i = 0; i < 4; i++)
+        u[i] = u[i] - v[i];
+
+    return u;
+}
+
 vector<float> Calc::verticesParaVetor(Vertice a, Vertice b){
     vector<float> u;
 
@@ -157,6 +164,66 @@ bool Calc::interceptaFace(vector<float> pontoInter, Face face){
         return false;
 
     return true;
+}
+
+vector<float> Calc::getPixel(vector<float> raioIntersecao, vector<Face> listaFace, Luz luz){
+
+    vector<float> pixel(3, 0);
+    vector<float> l(3, 0);
+
+    for(int i = 0; i < listaFace.size(); i++){
+        if(interceptaFace(pontoIntersecao(raioIntersecao, listaFace[i]), listaFace[i])){
+            pixel = l;
+            return pixel;
+        }
+        else
+            pixel = luz.getRGB();
+    }
+
+    return pixel;
+}
+
+//TODO: Fazer funçao que pega todas as faces
+vector< vector< vector<float> > > Calc::gerarImagem(int xPixels, int yPixels, float width, float height, float dist, vector<Face> listaFace, Luz luz){
+    vector< vector< vector<float> > > vport;
+    vector<float> pixel;
+
+    vport.resize(xPixels);
+    for(int i = 0; i < xPixels; i++)
+        vport[i].resize(yPixels);
+
+    //QImage image(xPixels, yPixels, QImage::Format_RGB32);
+
+    //Preenche imagem com branco
+    //value = qRgb(255, 255, 255);
+    //image.fill(value);
+
+    float alt, lar;
+    vector<float> vetorPixel;
+
+    for(int i = 0; i < xPixels; i++){
+        for(int j = 0; j < yPixels; j++){
+
+            lar = width/(2*xPixels) + i*width/(2*xPixels);
+            alt = height/(2*yPixels) + j*height/(2*yPixels);
+
+            vetorPixel.push_back(lar);
+            vetorPixel.push_back(alt);
+            vetorPixel.push_back(dist);
+            vetorPixel.push_back(0);
+
+            transVetUnitario(vetorPixel);
+
+            pixel = getPixel(vetorPixel, listaFace, luz);
+            vport[xPixels][yPixels] = pixel;
+
+            //value = qRgb(pixel[0]*254, pixel[0]*254, pixel[0]*254);
+
+            //image.setPixel(i, j, value);
+        }
+    }
+
+    return vport;
 }
 
 //Matr

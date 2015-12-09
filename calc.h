@@ -6,6 +6,8 @@
 #include "face.h"
 #include "vertice.h"
 #include "camera.h"
+#include "luz.h"
+#include "objeto.h"
 
 using namespace std;
 
@@ -13,6 +15,7 @@ class Calc
 {
 public:
     Calc();
+    vector<float> subtracaoVetores(vector<float>, vector<float>);
     vector<float> verticesParaVetor(Vertice, Vertice);
     vector<float> produtoVetorial(vector<float>, vector<float>);
     void transVetUnitario(vector<float>& u);
@@ -22,7 +25,8 @@ public:
     vector<float> produtoMatrizVetor(vector<vector<float> >, vector<float>);
     vector<float> pontoIntersecao(vector<float>, Face);
     bool interceptaFace(vector<float>, Face);
-
+    vector<float> getPixel(vector<float>, vector<Face>, Luz);
+    vector< vector< vector<float> > > gerarImagem(int, int, float, float, float, vector<Face>, Luz);
 };
 
 #endif // MATRIZ_H
