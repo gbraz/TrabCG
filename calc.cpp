@@ -204,7 +204,7 @@ vector< vector< vector<float> > > Calc::gerarImagem(int xPixels, int yPixels, fl
     for(int i = 0; i < xPixels; i++){
         for(int j = 0; j < yPixels; j++){
 
-            lar = width/(2*xPixels) + i*width/(2*xPixels);
+            lar = -(width/(2*xPixels)) + i*width/(2*xPixels);
             alt = height/(2*yPixels) + j*height/(2*yPixels);
 
             vetorPixel.push_back(lar);
@@ -215,7 +215,7 @@ vector< vector< vector<float> > > Calc::gerarImagem(int xPixels, int yPixels, fl
             transVetUnitario(vetorPixel);
 
             pixel = getPixel(vetorPixel, listaFace, luz);
-            vport[xPixels][yPixels] = pixel;
+            vport[i][j] = pixel;
 
             //value = qRgb(pixel[0]*254, pixel[0]*254, pixel[0]*254);
 

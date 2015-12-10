@@ -16,7 +16,7 @@ vector<Face> Objeto::lerFaces(){
     vector<Face> listaFace;
     vector<Vertice> listaVertice;
     vector< vector<float> > listaNormal;
-    fstream file("./cubo.obj");
+    fstream file("./cubo2.obj");
 
     string str;
     Face *face;
@@ -29,8 +29,8 @@ vector<Face> Objeto::lerFaces(){
         getline(file, str);
         getline(file, str);
         getline(file, str);
-        getline(file, str);
         qDebug() << QString::fromStdString(str);
+
 
         while(!file.eof()){
             file >> str;

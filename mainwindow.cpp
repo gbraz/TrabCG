@@ -8,17 +8,29 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    Objeto obj;
     ui->setupUi(this);
 
+    Objeto obj;
+    Luz luz;
+    Calc calc;
+    vector< vector< vector<float> > > imagem;
 
-    /* Teste
+    /* Teste */
     QImage image(100, 100, QImage::Format_RGB32);
     QRgb value;
 
     //Preenche imagem com branco
     value = qRgb(255, 255, 255);
     image.fill(value);
+
+    imagem = calc.gerarImagem(100, 100, 4, 4, 0.5, obj.getFaces(), luz);
+
+    for(int i = 0; i < imagem.size(); i++)
+        for(int j = 0; j < imagem[0].size(); j++){
+
+            value = qRgb(imagem[i][j][0]*254, imagem[i][j][1]*254, imagem[i][j][2]*254);
+            image.setPixel(i, j, value);
+        }
 
     //value = qRgb(luz.getR()*254, (int)(luz.getG()*254), (int)(luz.getB()*254));
 
@@ -30,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->graphicsView11->setScene(scene);
 
-     Teste */
+     /*Teste */
 
 
 }
