@@ -11,19 +11,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     Objeto obj;
-    Luz luz;
+    Luz luz(0, 5, 0);
     Calc calc;
     vector< vector< vector<float> > > imagem;
 
     /* Teste */
-    QImage image(100, 100, QImage::Format_RGB32);
+    QImage image(300, 300, QImage::Format_RGB32);
     QRgb value;
 
     //Preenche imagem com branco
     value = qRgb(255, 255, 255);
     image.fill(value);
 
-    imagem = calc.gerarImagem(100, 100, 4, 4, 0.5, obj.getFaces(), luz);
+    imagem = calc.gerarImagem(150, 150, 10, 10, 1, obj.getFaces(), luz);
 
     for(int i = 0; i < imagem.size(); i++)
         for(int j = 0; j < imagem[0].size(); j++){
@@ -32,17 +32,13 @@ MainWindow::MainWindow(QWidget *parent) :
             image.setPixel(i, j, value);
         }
 
-    //value = qRgb(luz.getR()*254, (int)(luz.getG()*254), (int)(luz.getB()*254));
-
-    image.setPixel(5, 5, value);
-
     QPixmap item(QPixmap::fromImage(image));
     QGraphicsScene* scene = new QGraphicsScene();
     scene->addPixmap(item);
 
     ui->graphicsView11->setScene(scene);
 
-     /*Teste */
+    /*Teste */
 
 
 }

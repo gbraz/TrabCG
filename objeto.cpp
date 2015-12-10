@@ -16,7 +16,7 @@ vector<Face> Objeto::lerFaces(){
     vector<Face> listaFace;
     vector<Vertice> listaVertice;
     vector< vector<float> > listaNormal;
-    fstream file("./cubo2.obj");
+    fstream file("./cubo3.obj");
 
     string str;
     Face *face;
@@ -72,6 +72,8 @@ vector<Face> Objeto::lerFaces(){
 
         file.close();
     }
+    else
+        qDebug() << "Arquivo não encontrado";
 
     return faces;
 }

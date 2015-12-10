@@ -176,8 +176,6 @@ vector<float> Calc::getPixel(vector<float> raioIntersecao, vector<Face> listaFac
             pixel = l;
             return pixel;
         }
-        else
-            pixel = luz.getRGB();
     }
 
     return pixel;
@@ -192,14 +190,10 @@ vector< vector< vector<float> > > Calc::gerarImagem(int xPixels, int yPixels, fl
     for(int i = 0; i < xPixels; i++)
         vport[i].resize(yPixels);
 
-    //QImage image(xPixels, yPixels, QImage::Format_RGB32);
-
-    //Preenche imagem com branco
-    //value = qRgb(255, 255, 255);
-    //image.fill(value);
 
     float alt, lar;
     vector<float> vetorPixel;
+    vetorPixel.resize(4);
 
     for(int i = 0; i < xPixels; i++){
         for(int j = 0; j < yPixels; j++){
@@ -207,19 +201,15 @@ vector< vector< vector<float> > > Calc::gerarImagem(int xPixels, int yPixels, fl
             lar = -(width/(2*xPixels)) + i*width/(2*xPixels);
             alt = height/(2*yPixels) + j*height/(2*yPixels);
 
-            vetorPixel.push_back(lar);
-            vetorPixel.push_back(alt);
-            vetorPixel.push_back(dist);
-            vetorPixel.push_back(0);
+            vetorPixel[0] = lar;
+            vetorPixel[1] = alt;
+            vetorPixel[2] = dist;
 
             transVetUnitario(vetorPixel);
 
             pixel = getPixel(vetorPixel, listaFace, luz);
             vport[i][j] = pixel;
 
-            //value = qRgb(pixel[0]*254, pixel[0]*254, pixel[0]*254);
-
-            //image.setPixel(i, j, value);
         }
     }
 
