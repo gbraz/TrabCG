@@ -8,9 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    Objeto obj;
     ui->setupUi(this);
 
-    Objeto obj;
 
     /* Teste
     QImage image(100, 100, QImage::Format_RGB32);
