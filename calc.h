@@ -26,7 +26,7 @@ public:
     vector<float> pontoIntersecao(vector<float>, Face);
     bool interceptaFace(vector<float>, Face);
     vector<float> getPixel(vector<float>, vector<Face>, Luz);
-    vector< vector< vector<float> > > gerarImagem(int, int, float, float, float, vector<Face>, Luz);
+    vector< vector< vector<float> > > gerarImagem(int xPixels, int yPixels, float width, float height, float dist, vector<Face> listaFace, Luz luz);
 };
 
 #endif // MATRIZ_H

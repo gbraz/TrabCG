@@ -19,7 +19,7 @@ vector<Face> Objeto::lerFaces(){
     fstream file("./cubo.obj");
 
     string str;
-
+    Face *face;
     float x, y, z;
     int i, j, k, n;
 
@@ -35,9 +35,11 @@ vector<Face> Objeto::lerFaces(){
         while(!file.eof()){
             file >> str;
             if(!str.compare("v")){
+
                 file >> x >> y >> z;
                 Vertice vertice(x, y, z);
                 listaVertice.push_back(vertice);
+
                 qDebug() << QString::fromStdString(str) << x << y << z;
             }
             else if (!str.compare("vn")){
@@ -49,6 +51,7 @@ vector<Face> Objeto::lerFaces(){
                 normal.push_back(0);
 
                 listaNormal.push_back(normal);
+
                 qDebug() << QString::fromStdString(str) << x << y << z;
             }
             else if(!str.compare("f")){
@@ -56,10 +59,19 @@ vector<Face> Objeto::lerFaces(){
                 str = str.substr(2);
                 n = QString::fromStdString(str).toInt();
 
-                Face face(listaVertice[i-1], listaVertice[j-1], listaVertice[k-1], listaNormal[n-1]);
+                face = new Face(listaVertice[i-1], listaVertice[j-1], listaVertice[k-1], listaNormal[n-1]);
+
+                listaFace.push_back(*face);
 
                 qDebug() << QString::fromStdString(str) << i << j << k;
             }
 
         }
+
+        this->faces = listaFace;
+
+        file.close();
     }
+
+    return faces;
+}
